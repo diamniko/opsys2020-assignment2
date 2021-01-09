@@ -18,7 +18,10 @@ public abstract class Scheduler {
      * schedulers. */
     public void removeProcess(Process p) {
         /* TODO: you need to add some code here */
-        
+        if (p.getPCB().getState() == ProcessState.TERMINATED) {
+            processes.remove(p);
+        }
+        //Ενδέχεται να υπάρχουν και άλλα σενάρια για να αφαιρεθεί μια διεργασία
     }
     
     /* the getNextProcess() method should return the process that should
