@@ -69,8 +69,13 @@ public class Process {
         return memoryRequirements;
     }
 
-    //Getter για την arrivalTime
+    //Getter για τον χρόνο άφιξης
     protected int getArrivalTime() {
         return arrivalTime;
+    }
+
+    //Getter για τον χρόνο καταιγισμού
+    protected int getBurstTime() {
+        return burstTime;
     }
 }

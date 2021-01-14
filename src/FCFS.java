@@ -5,6 +5,7 @@ public class FCFS extends Scheduler {
         /* TODO: you _may_ need to add some code here */
         while (processes.size() > 0) {
             Process currentProcess = getNextProcess();
+            CPU.clock += currentProcess.getBurstTime(); //Εκτελείται ολόκληρη η διεργασία
             //Μετά την εκτέλεση μιας διεργασίας την σταματάει και την αφαιρεί από τη λίστα
             currentProcess.waitInBackground();
             removeProcess(currentProcess);
