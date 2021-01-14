@@ -8,23 +8,23 @@ public class BestFit extends MemoryAllocationAlgorithm {
     }
 
    private int findFit(Process p, int[] blocks){
-       int megethos = 0;
+       int sizeOfBlock = 0;
        Arrays.sort(blocks);
        for(int i=0 ; i<blocks.length-1;i++){
            if(blocks[i] >= p.getMemoryRequirements()){
-                megethos = blocks[i];
+                sizeOfBlock = blocks[i];
            }
            else{
                return -1;
            }
        }
-       return megethos;
+       return sizeOfBlock;
    }
 
-   private int findIndex(int[] array, int megethos){
+   private int findIndex(int[] array, int sizeOfBlock){
 
         for(int i=0;i<array.length-1;i++){
-            if(array[i] == megethos){
+            if(array[i] == sizeOfBlock){
                 return i;
             }
         }
@@ -37,22 +37,23 @@ public class BestFit extends MemoryAllocationAlgorithm {
          * Hint: this should return the memory address where the process was
          * loaded into if the process fits. In case the process doesn't fit, it
          * should return -1. */
-        int megethos = findFit(p,availableBlockSizes);
-        if(megethos == -1){
-            return address ;
+        int sizeOfBlock = findFit(p,availableBlockSizes);
+        if(sizeOfBlock == -1){
+            System.out.println("Error");
+            return -1;
         }
 
         for(MemorySlot m : currentlyUsedMemorySlots){
-            if((m.getBlockEnd()-m.getBlockStart()) == megethos){
+            if((m.getBlockEnd()-m.getBlockStart()) == sizeOfBlock){
                 address = m.getStart();
                 fit = true;
             }
         }
-        if(fit == true){
-            int index = findIndex(availableBlockSizes,megethos);
-            for(int i=index;i<availableBlockSizes.length-1;i++){
-                availableBlockSizes[i] = availableBlockSizes[i+1];
-            }
+
+        if(fit){
+            int index = findIndex(availableBlockSizes,sizeOfBlock);
+            if (availableBlockSizes.length - 1 - index >= 0)
+                System.arraycopy(availableBlockSizes, index + 1, availableBlockSizes, index, availableBlockSizes.length - 1 - index);
         }
 
         return address;
