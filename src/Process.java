@@ -64,7 +64,13 @@ public class Process {
         }
         return 0;
     }
+
     protected int getMemoryRequirements(){
         return memoryRequirements;
+    }
+
+    //Getter για την arrivalTime
+    protected int getArrivalTime() {
+        return arrivalTime;
     }
 }

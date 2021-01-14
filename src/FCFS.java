@@ -20,8 +20,8 @@ public class FCFS extends Scheduler {
         /* TODO: you need to add some code here
          * and change the return value */
         //Παίρνει την πρώτη διεργασία από τη λίστα και την εκτελεί
-        Process newProcess = processes.get(0);
-        newProcess.run();
-        return newProcess;
+        Process nextProcess = processes.get(0);
+        nextProcess.run();
+        return nextProcess;
     }
 }
