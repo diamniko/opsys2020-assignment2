@@ -91,7 +91,6 @@ public class BestFit extends MemoryAllocationAlgorithm {
          * should return -1. */
         int sizeOfBlock = findFit(p,availableBlockSizes);
         if(sizeOfBlock == -1){
-            System.out.println("Error");
             return -1;
         }
 
