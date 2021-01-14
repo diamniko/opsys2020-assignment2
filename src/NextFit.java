@@ -17,4 +17,6 @@ public class NextFit extends MemoryAllocationAlgorithm {
         return address;
     }
 
+
+
 }

@@ -64,4 +64,7 @@ public class Process {
         }
         return 0;
     }
+    protected int getMemoryRequirements(){
+        return memoryRequirements;
+    }
 }
