@@ -21,6 +21,15 @@ public class BestFit extends MemoryAllocationAlgorithm {
        return megethos;
    }
 
+   private int findIndex(int[] array, int megethos){
+
+        for(int i=0;i<array.length-1;i++){
+            if(array[i] == megethos){
+                return i;
+            }
+        }
+        return -1;
+   }
     public int fitProcess(Process p, ArrayList<MemorySlot> currentlyUsedMemorySlots) {
         boolean fit = false;
         int address = -1;
@@ -37,6 +46,12 @@ public class BestFit extends MemoryAllocationAlgorithm {
             if((m.getBlockEnd()-m.getBlockStart()) == megethos){
                 address = m.getStart();
                 fit = true;
+            }
+        }
+        if(fit == true){
+            int index = findIndex(availableBlockSizes,megethos);
+            for(int i=index;i<availableBlockSizes.length-1;i++){
+                availableBlockSizes[i] = availableBlockSizes[i+1];
             }
         }
 
